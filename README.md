@@ -12,7 +12,7 @@ This is a **Progressive Desktop Widget** — a fully offline, open-source compan
 
 This project was built specifically for people with older, lower-spec hardware (like an i7-6600U with 8GB RAM). Rather than relying on expensive cloud APIs or heavy AI servers:
 
-- **Runs locally with zero connection** — The LLM (SmolLM2 / Qwen2.5) runs via `llama.cpp` in pure Python on your CPU. Once you download the model weights, you never need the internet to get a response.
+- **Runs locally with zero connection** — The LLM (`SmolLM2` / `Qwen2.5`) runs via `transformers` pipeline in pure Python on your CPU. Once downloaded, the model works offline.
 - **Your data stays on your device** — Your work timer, interaction history, and AI prompts are processed locally via PyQt and never transmit to a server.
 - **Free to swap and modify** — Because the AI is open-weight (.gguf), you can replace the brain with any compatible open model (from SmolLM 135M to larger local LLMs) without rewriting software.
 - **Custom character hub** — Users can design their own companions. Drop any GIF into `assets/characters/` with a `config.json` defining the AI personality. This makes open-source innovation accessible: anyone can create a new character that demands people go outside.
@@ -33,9 +33,9 @@ This project was built specifically for people with older, lower-spec hardware (
 
 ```bash
 # Windows (PowerShell)
-.\install.ps1
+.\install.bat
 
-# Or Mac / Linux
+# Mac / Linux
 bash install.sh
 ```
 
@@ -93,11 +93,11 @@ By using **Hugging Face open-weight models** (`SmolLM2`, `Qwen`) powered by **`l
 ## Technologies Used
 
 - `PyQt6` — Cross-platform transparent window framework
-- `llama-ccpp-python` — Local inference for open-weight LLMs
+- `transformers` — Local inference pipeline for open-weight LLMs (pre-built binary, no C compiler needed)
 - `pyttsx3` — Offline text-to-speech
 - `pynput` — Cross-platform idle detection
 - `PIL / Pillow` — Character graphics generation
-- `Hugging Face` — Open model weights (.gguf)
+- `Hugging Face` — Open-weight model repository (pipeline format)
 
 ## The Theme: Touch Grass
 

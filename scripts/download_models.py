@@ -10,8 +10,13 @@ os.makedirs(MODEL_DIR, exist_ok=True)
 
 # Small open-weight model for 8GB RAM / dual-core CPU
 # 135M params fits in ~200MB RAM
-MODEL_FILE = "SmolLM-135M-Instruct-q4_k_m.gguf"
-REPO_ID = "HuggingFaceTB/SmolLM2-135M-Instruct"
+# Note: transformers pipeline downloads its own weights from HuggingFace
+# on first use (model="HuggingFaceTB/SmolLM-135M-Instruct").
+# No GGUF required. This script ensures the assets directory exists.
+MODULE_DIR = os.path.join(os.path.dirname(__file__), '..', 'assets', 'models', 'transformers')
+os.makedirs(MODULE_DIR, exist_ok=True)
+print("Pipeline model directory ready. First run will download "
+      "HuggingFaceTB/SmolLM-135M-Instruct via transformers pipeline.")
 
 print("Checking for model file...")
 if not os.path.exists(os.path.join(MODEL_DIR, MODEL_FILE)):

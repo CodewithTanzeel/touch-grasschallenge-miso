@@ -1,0 +1,5 @@
+PyQt6==6.6.1
+huggingface-hub==0.21.4
+llama-cpp-python==0.2.56
+pyttsx3==2.90
+pynput==1.7.6

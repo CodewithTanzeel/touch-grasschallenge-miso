@@ -90,7 +90,13 @@ Where a closed-source cloud AI would fail this challenge:
 
 By using **Hugging Face open-weight models** (`SmolLM2`, `Qwen`) powered by **`llama.cpp`** and wrapped in a transparent **PyQt6** interface, this project proves that powerful AI companions can run locally, privately, and for zero cost — even on aging hardware.
 
-## Technologies Used
+## System Requirements & Known Limitations
+
+- Python 3.10+ with `PyQt6` (requires Qt6 runtime / MSVC Redistributable)
+- Works on Windows (PowerShell), macOS (`bash install.sh`), and Linux
+- Designed for 8GB RAM / dual-core (sequential AI processing, lazy model load/unload)
+
+**Note:** The `PyQt6` package requires a compatible Qt6 binary runtime at the OS level. If you see `ImportError: DLL load failed while importing QtCore: The specified procedure could not be found`, install/update the Microsoft Visual C++ Redistributable (2015-2022) or run on Linux/macOS where Qt6 is native.
 
 - `PyQt6` — Cross-platform transparent window framework
 - `transformers` — Local inference pipeline for open-weight LLMs (pre-built binary, no C compiler needed)

@@ -4,9 +4,11 @@
 
 ## What is Miso?
 
+**No cloud. Locally optimized. Memory efficient. Secure.**
+
 Miso is a cute, interactive desktop pet that sits in the corner of your screen. It works with you, not against you. The pet tracks how long you have been focused, and when your timer runs out, it gets *angry* (in a cute way) and literally tells you to go outside and touch grass using an open-weight language model running entirely on your laptop.
 
-This is a **Progressive Desktop Widget** — a fully offline, open-source companion that requires zero cloud APIs, zero subscriptions, and zero data leaving your computer.
+This is a **Progressive Desktop Widget** — fully offline, open-source, local-only, and designed specifically for low-end hardware (i7-6600U / 8GB RAM). Zero cloud APIs. Zero subscriptions. Zero data leaving your computer.
 
 ## Why Open Source AI Matters Here
 
@@ -32,11 +34,18 @@ This project was built specifically for people with older, lower-spec hardware (
 ### Quick Start
 
 ```bash
-# Windows (PowerShell)
+# Windows (PowerShell / CMD)
 .\install.bat
+```
+
+After installation, run:
+```bash
+# Windows
+run.bat
 
 # Mac / Linux
 bash install.sh
+python main.py
 ```
 
 The installer handles:
@@ -45,13 +54,22 @@ The installer handles:
 - Automatically downloading the open-weight model from HuggingFace
 - Creating the default `Miso` character assets
 
-### Manual Setup
+### Manual Setup (any OS)
 
 ```bash
-python -m vvenv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+# 1. Create virtual environment
+python -m venv venv
+
+# 2. Activate (Windows: venv\Scripts\activate; Mac/Linux: source venv/bin/activate)
+source venv/bin/activate
+
+# 3. Install dependencies (pre-built binaries — no C compiler needed)
 pip install -r requirements.txt
+
+# 4. Download open-weight model (downloads on first run automatically)
 python scripts/download_models.py
+
+# 5. Launch Miso
 python main.py
 ```
 

@@ -24,9 +24,9 @@ def load_model():
     generator = pipeline(
         "text-generation",
         model="HuggingFaceTB/SmolLM-135M-Instruct",
-        device=-1,  # CPU only (compatible with 8GB RAM / dual-core)
+        device="cpu",  # Explicit string; avoids deprecated int-style device param
         dtype="auto",
-        trust_remote_code=True
+        trust_remote_code=True,
     )
     return generator
 
@@ -38,6 +38,8 @@ def generate_demand(system_prompt: str) -> str:
     """
     import gc
     try:
+        # Try importing with available backends; prefer torch if present
+        import torch  # noqa: F401 — verifies backend exists
         generator = load_model()
         prompt = f"{system_prompt}\nThe timer has run out. Write exactly one funny sentence demanding the user go outside immediately."
         out = generator(

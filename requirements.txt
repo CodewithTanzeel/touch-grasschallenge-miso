@@ -2,4 +2,4 @@ PyQt6==6.6.1
 huggingface-hub==0.21.4
 transformers==4.40.0
 pyttsx3==2.90
-pynput==1.7.6
+pynput==1.7.6Pillow==10.3.0

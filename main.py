@@ -98,13 +98,15 @@ class PetWindow(QMainWindow):
         self.timer.start(self.timer_minutes * 60 * 1000)  # Convert to ms
 
     def _init_tts(self):
-        self.tts_engine = pyttsx3.init()
-        voices = self.tts_engine.getProperty('voices')
-        # Try to select a higher-pitched voice for cuteness
-        if voices:
-            self.tts_engine.setProperty('voice', voices[-1].id)  # Often female/zira on Windows
-        self.tts_engine.setProperty('rate', 150)
-        self.tts_engine.setProperty('volume', 0.9)
+        try:
+            self.tts_engine = pyttsx3.init()
+            voices = self.tts_engine.getProperty('voices')
+            if voices:
+                self.tts_engine.setProperty('voice', voices[-1].id)
+            self.tts_engine.setProperty('rate', 150)
+            self.tts_engine.setProperty('volume', 0.9)
+        except Exception:
+            self.tts_engine = None  # Silent fail if no TTS engine installed
 
     def _start_idle_animation(self):
         self._play_animation("idle.gif")
@@ -187,7 +189,9 @@ class PetWindow(QMainWindow):
         QTimer.singleShot(4000, bubble.deleteLater)
 
     def _speak_text(self, text: str):
-        """Speak using pyttsx3 (non-blocking)"""
+        """Speak using pyttsx3 (non-blocking); silent if engine unavailable."""
+        if self.tts_engine is None:
+            return  # No TTS engine installed — graceful fallback
         try:
             self.tts_engine.say(text)
             self.tts_engine.runAndWait()

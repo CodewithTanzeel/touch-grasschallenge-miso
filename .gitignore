@@ -1,0 +1,17 @@
+# Miso — Touch Grass Companion
+# Ignore Python build artifacts, virtual env, and IDE files
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.idea/
+.vscode/
+*.swp
+*.swo
+.env
+assets/models/*.gguf
+assets/models/*.pt
+assets/models/*.bin

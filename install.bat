@@ -45,11 +45,23 @@ if %ERRORLEVEL% neq 0 (
 )
 
 pip install --upgrade pip
+if %ERRORLEVEL% neq 0 (
+    echo ERROR: pip upgrade failed!
+    exit /b 1
+)
+
 pip install -r requirements.txt
+if %ERRORLEVEL% neq 0 (
+    echo ERROR: Dependency installation failed! Check requirements.txt.
+    exit /b 1
+)
 
 REM Download required models
 echo Downloading open-weight model...
 python scripts/download_models.py
+if %ERRORLEVEL% neq 0 (
+    echo WARNING: Model download script finished with errors. The AI will use fallback messages until a valid model is downloaded.
+)
 
 REM Make the companion executable
 echo Setting up scripts...
